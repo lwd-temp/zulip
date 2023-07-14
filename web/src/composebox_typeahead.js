@@ -240,8 +240,10 @@ function handle_keydown(e, {on_enter_send}) {
 
                 handle_enter($("#compose-textarea"), e);
             }
-        } else if (on_topic || on_pm) {
             // We are doing the focusing on keyup to not abort the typeahead.
+        } else if (on_topic) {
+            $nextFocus = $("#recipient_box_new_topic_button");
+        } else if (on_pm) {
             $nextFocus = $("#compose-textarea");
         }
     }

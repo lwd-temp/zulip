@@ -68,7 +68,8 @@
 
             color: hsl(231deg 20% 55%);
 
-            &:hover {
+            &:hover,
+            &:focus {
                 background-color: var(
                     --color-background-hover-new-topic-button
                 );
@@ -628,9 +629,11 @@ textarea.new_message_textarea,
 
         color: hsl(231deg 20% 55%);
 
-        &:hover {
+        &:hover,
+        &:focus {
             background-color: var(--color-background-hover-new-topic-button);
             color: hsl(231deg 20% 40%);
+            outline: none;
         }
 
         /* This is temporary until we figure out how to display

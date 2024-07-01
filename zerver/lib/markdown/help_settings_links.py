@@ -6,7 +6,7 @@ from markdown.extensions import Extension
 from markdown.preprocessors import Preprocessor
 from typing_extensions import override
 
-from zerver.lib.markdown.priorities import PREPROCESSOR_PRIORITES
+from zerver.lib.markdown.priorities import PREPROCESSOR_PRIORITIES
 
 # There is a lot of duplicated code between this file and
 # help_relative_links.py. So if you're making a change here consider making
@@ -58,11 +58,15 @@ link_mapping = {
         "Authentication methods",
         "/#organization/auth-methods",
     ],
-    "user-list-admin": ["Organization settings", "Users", "/#organization/user-list-admin"],
-    "deactivated-users-admin": [
+    "users": [
+        "Organization settings",
+        "Users",
+        "/#organization/users/active",
+    ],
+    "deactivated": [
         "Organization settings",
         "Deactivated users",
-        "/#organization/deactivated-users-admin",
+        "/#organization/users/deactivated",
     ],
     "bot-list-admin": [
         "Organization settings",
@@ -89,10 +93,10 @@ link_mapping = {
         "Custom profile fields",
         "/#organization/profile-field-settings",
     ],
-    "invites-list-admin": [
+    "invitations": [
         "Organization settings",
         "Invitations",
-        "/#organization/invites-list-admin",
+        "/#organization/users/invitations",
     ],
     "data-exports-admin": [
         "Organization settings",
@@ -131,7 +135,7 @@ class SettingHelpExtension(Extension):
     def extendMarkdown(self, md: Markdown) -> None:
         """Add SettingHelpExtension to the Markdown instance."""
         md.registerExtension(self)
-        md.preprocessors.register(Setting(), "setting", PREPROCESSOR_PRIORITES["setting"])
+        md.preprocessors.register(Setting(), "setting", PREPROCESSOR_PRIORITIES["setting"])
 
 
 relative_settings_links: bool = False
